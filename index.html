@@ -10,7 +10,7 @@
 
   <div class="container">
 
-    <!-- Top Header: Logo on left, Cart & Title on right -->
+    <!-- Top Header-->
     <header class="box">
       <div class="row">
         <div class="row header-brand">
@@ -25,8 +25,8 @@
 
     <!-- Tab Buttons for Navigation -->
     <nav class="row nav-tabs">
-      <button type="button" class="btn" id="btnActive" onclick="showTab('active')">[ active orders ] <span class="badge" id="activeCount">0</span></button>
-      <button type="button" class="btn" id="btnCompleted" onclick="showTab('completed')">[ completed orders ] <span class="badge" id="completedCount">0</span></button>
+      <button type="button" class="btn" id="btnActive" onclick="showTab('active')"><img src="Assets/Cart.png" height="30px" width="30px">Active Orders <span class="badge" id="activeCount">0</span></button>
+      <button type="button" class="btn" id="btnCompleted" onclick="showTab('completed')"><img src="Assets/ready-stock.png" height="30px" width="30px">Completed Orders <span class="badge" id="completedCount">0</span></button>
     </nav>
 
     <!-- MAIN BIG BOX -->
@@ -99,15 +99,41 @@
           </div>
         </section>
 
-        <!-- PRODUCTS TITLE -->
-        <div class="row section-title-row">
-          <div>
-            <h2>products here</h2>
-            <p>Choose clothes to wash or dry clean</p>
+        <!-- Order Form & Summary Box -->
+        <section class="box order-form-box">
+          <!-- PRODUCTS TITLE -->
+          <div class="row section-title-row">
+            <div>
+              <h2>New Order ID:
+              <span id="display" ></span></h2>
+            </div>
+           
           </div>
-         
-        </div>
+          <h3>Customer Details</h3>
+          <div class="row form-fields">
+            <label>
+              Customer Name:
+              <input type="text" id="custName" placeholder="Enter your full name" required>
+            </label>
+            <label>
+              Mobile Number:
+              <input type="tel" id="custPhone" placeholder="10-digit mobile number" maxlength="10" required>
+            </label>
+            <label>
+              Service Category:
+              <select id="serviceType" onchange="syncService('bottom')">
+                <option value="Wash &amp; Fold">Wash &amp; Fold</option>
+                <option value="Dry Clean">Dry Clean</option>
+                <option value="Steam Ironing">Steam Ironing</option>
+                <option value="Express Wash">Express Wash</option>
+              </select>
+            </label>
+          </div>
 
+          
+        </section>
+
+      </section>
         <!-- Clothes Items Grid -->
         <div class="grid">
 
@@ -266,42 +292,17 @@
               <button type="button" class="btn" onclick="stepUp('qty-clothes')">+</button>
             </div>
           </div>
-
         </div>
 
-        <!-- Order Form & Summary Box -->
+        <!-- Order Summary -->
         <section class="box order-form-box">
-          <h3>Customer Details &amp; Order Summary</h3>
-          <div class="row form-fields">
-            <label>
-              Customer Name:
-              <input type="text" id="custName" placeholder="Enter your full name" required>
-            </label>
-            <label>
-              Mobile Number:
-              <input type="tel" id="custPhone" placeholder="10-digit mobile number" maxlength="10" required>
-            </label>
-            <label>
-              Service Category:
-              <select id="serviceType" onchange="syncService('bottom')">
-                <option value="Wash &amp; Fold">Wash &amp; Fold</option>
-                <option value="Dry Clean">Dry Clean</option>
-                <option value="Steam Ironing">Steam Ironing</option>
-                <option value="Express Wash">Express Wash</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="row total-row">
-            <div>
-              <p>Total Items: <b id="displayTotalItems">0</b></p>
-              <p>Total Amount: <b id="displayTotalPrice">&#8377;0</b></p>
-            </div>
-            <button type="button" class="btn btn-order" onclick="placeOrder()">Place Order &amp; Get 5-Digit Code</button>
+          <h3 >Order Summary</h3><hr style="margin-bottom: 10px;">
+          <div class="row">
+            <p>Total Items: <b id="displayTotalItems">0</b></p>
+            <p>Total Amount: <b id="displayTotalPrice">&#8377;0</b></p>
+            <button type="button" class="btn btn-order" onclick="placeOrder()">Create Order</button>
           </div>
         </section>
-
-      </section>
 
       <!-- SECTION 2: ACTIVE ORDERS -->
       <section id="sectionActive" class="hidden">
@@ -327,6 +328,6 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

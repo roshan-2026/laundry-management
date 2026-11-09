@@ -188,6 +188,8 @@ function generateOrderCode() {
 
   return uniqueCode;
 }
+const orderCode = generateOrderCode();
+document.getElementById("display").innerText = orderCode;
 
 // Function to place a new order
 function placeOrder() {
@@ -240,8 +242,6 @@ function placeOrder() {
     return;
   }
 
-  // Generate unique 5-digit code
-  const orderCode = generateOrderCode();
 
   // Create order object
   const newOrder = {
@@ -252,7 +252,7 @@ function placeOrder() {
     items: selectedItems,
     totalItems: totalCount,
     totalPrice: totalPrice,
-    time: "Just now",
+    time: new Date().toLocaleString(),
     status: "Active"
   };
 
@@ -268,27 +268,9 @@ function placeOrder() {
   if (custPhoneInput) custPhoneInput.value = "";
   calculateTotal();
 
-  // Show confirmation alert with the 5-digit code
-  const codeBadge = document.getElementById("newOrderCodeBadge");
-  if (codeBadge) {
-    codeBadge.innerText = "#" + orderCode;
-  }
-  const alertBox = document.getElementById("alertBox");
-  if (alertBox) {
-    alertBox.classList.remove("hidden");
-  }
-
   // Re-render orders and switch to Active Orders tab
   renderOrders();
   showTab("active");
-}
-
-// Function to close alert banner
-function closeAlert() {
-  const alertBox = document.getElementById("alertBox");
-  if (alertBox) {
-    alertBox.classList.add("hidden");
-  }
 }
 
 // Move an active order to completed status
@@ -296,7 +278,7 @@ function completeOrder(code) {
   for (let i = 0; i < ordersList.length; i++) {
     if (ordersList[i].code === code) {
       ordersList[i].status = "Completed";
-      ordersList[i].time = "Ready now";
+      ordersList[i].time = new Date().toLocaleString();
       break;
     }
   }
