@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fresh & Clean Laundry Service</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Top Header: Logo on left, Cart & Title on right -->
+    <header class="box">
+      <div class="row">
+        <div class="row header-brand">
+          <img src="Assets/Logo.png" alt="Laundry Logo">
+          <h1>Laundry Express</h1>
+        </div>
+        <div class="row header-cart">
+          <button type="button" class="btn active" id="btnProducts" onclick="showTab('products')" style="font-size: 13px">Home</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tab Buttons for Navigation -->
+    <nav class="row nav-tabs">
+      <button type="button" class="btn" id="btnActive" onclick="showTab('active')">[ active orders ] <span class="badge" id="activeCount">0</span></button>
+      <button type="button" class="btn" id="btnCompleted" onclick="showTab('completed')">[ completed orders ] <span class="badge" id="completedCount">0</span></button>
+    </nav>
+
+    <!-- MAIN BIG BOX -->
+    <main id="mainBox">    
+
+      <!-- SECTION 1: PRODUCTS LIST & ORDER CREATION -->
+      <section id="sectionProducts">
+
+        <!-- PRICE LIST TABLE AT TOP BEFORE ORDER CREATION -->
+        <section class="box price-table-box">
+          <div class="row section-title-row">
+            <h2>Washing Categories &amp; Price List</h2>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Cloth Item</th>
+                  <th>Wash &amp; Fold</th>
+                  <th>Steam Ironing</th>
+                  <th>Dry Cleaning</th>
+                  <th>Express Wash</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Shirt / T-Shirt</b></td>
+                  <td>&#8377;20</td>
+                  <td>&#8377;15</td>
+                  <td>&#8377;30</td>
+                  <td>&#8377;45</td>
+                </tr>
+                <tr>
+                  <td><b>Jeans / Trousers</b></td>
+                  <td>&#8377;30</td>
+                  <td>&#8377;20</td>
+                  <td>&#8377;50</td>
+                  <td>&#8377;70</td>
+                </tr>
+                <tr>
+                  <td><b>Jacket / Blazer</b></td>
+                  <td>&#8377;60</td>
+                  <td>&#8377;40</td>
+                  <td>&#8377;100</td>
+                  <td>&#8377;140</td>
+                </tr>
+                <tr>
+                  <td><b>Saree / Frock / Dress</b></td>
+                  <td>&#8377;40</td>
+                  <td>&#8377;25</td>
+                  <td>&#8377;70</td>
+                  <td>&#8377;95</td>
+                </tr>
+                <tr>
+                  <td><b>Blanket / Quilt</b></td>
+                  <td>&#8377;80</td>
+                  <td>&#8377;40</td>
+                  <td>&#8377;120</td>
+                  <td>&#8377;160</td>
+                </tr>
+                <tr>
+                  <td><b>Shorts / Scarf / Top</b></td>
+                  <td>&#8377;15</td>
+                  <td>&#8377;10</td>
+                  <td>&#8377;25</td>
+                  <td>&#8377;35</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PRODUCTS TITLE -->
+        <div class="row section-title-row">
+          <div>
+            <h2>products here</h2>
+            <p>Choose clothes to wash or dry clean</p>
+          </div>
+         
+        </div>
+
+        <!-- Clothes Items Grid -->
+        <div class="grid">
+
+          <!-- 1. Shirt -->
+          <div class="box item">
+            <img src="Assets/Shirt.png" alt="Shirt">
+            <h3>Shirt</h3>
+            <p>&#8377;30 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-shirt')">-</button>
+              <input type="number" id="qty-shirt" data-name="Shirt" data-price="30" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-shirt')">+</button>
+            </div>
+          </div>
+
+          <!-- 2. T-Shirt -->
+          <div class="box item">
+            <img src="Assets/t-shirt.png" alt="T-Shirt">
+            <h3>T-Shirt</h3>
+            <p>&#8377;20 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-tshirt')">-</button>
+              <input type="number" id="qty-tshirt" data-name="T-Shirt" data-price="20" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-tshirt')">+</button>
+            </div>
+          </div>
+
+          <!-- 3. Jeans -->
+          <div class="box item">
+            <img src="Assets/jeans.png" alt="Jeans">
+            <h3>Jeans</h3>
+            <p>&#8377;50 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-jeans')">-</button>
+              <input type="number" id="qty-jeans" data-name="Jeans" data-price="50" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-jeans')">+</button>
+            </div>
+          </div>
+
+          <!-- 4. Shorts -->
+          <div class="box item">
+            <img src="Assets/shorts.png" alt="Shorts">
+            <h3>Shorts</h3>
+            <p>&#8377;30 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-shorts')">-</button>
+              <input type="number" id="qty-shorts" data-name="Shorts" data-price="30" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-shorts')">+</button>
+            </div>
+          </div>
+
+          <!-- 5. Jacket -->
+          <div class="box item">
+            <img src="Assets/jacket.png" alt="Jacket">
+            <h3>Jacket</h3>
+            <p>&#8377;80 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-jacket')">-</button>
+              <input type="number" id="qty-jacket" data-name="Jacket" data-price="80" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-jacket')">+</button>
+            </div>
+          </div>
+
+          <!-- 6. Blazer -->
+          <div class="box item">
+            <img src="Assets/Blazer.png" alt="Blazer">
+            <h3>Blazer</h3>
+            <p>&#8377;100 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-blazer')">-</button>
+              <input type="number" id="qty-blazer" data-name="Blazer" data-price="100" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-blazer')">+</button>
+            </div>
+          </div>
+
+          <!-- 7. Saree -->
+          <div class="box item">
+            <img src="Assets/Saree.png" alt="Saree">
+            <h3>Saree</h3>
+            <p>&#8377;70 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-saree')">-</button>
+              <input type="number" id="qty-saree" data-name="Saree" data-price="70" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-saree')">+</button>
+            </div>
+          </div>
+
+          <!-- 8. Frock -->
+          <div class="box item">
+            <img src="Assets/frock.png" alt="Frock">
+            <h3>Frock</h3>
+            <p>&#8377;60 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-frock')">-</button>
+              <input type="number" id="qty-frock" data-name="Frock" data-price="60" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-frock')">+</button>
+            </div>
+          </div>
+
+          <!-- 9. Scarf -->
+          <div class="box item">
+            <img src="Assets/scarf.png" alt="Scarf">
+            <h3>Scarf</h3>
+            <p>&#8377;20 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-scarf')">-</button>
+              <input type="number" id="qty-scarf" data-name="Scarf" data-price="20" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-scarf')">+</button>
+            </div>
+          </div>
+
+          <!-- 10. Tunic -->
+          <div class="box item">
+            <img src="Assets/tunic.png" alt="Tunic">
+            <h3>Tunic</h3>
+            <p>&#8377;40 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-tunic')">-</button>
+              <input type="number" id="qty-tunic" data-name="Tunic" data-price="40" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-tunic')">+</button>
+            </div>
+          </div>
+
+          <!-- 11. Top -->
+          <div class="box item">
+            <img src="Assets/Top.png" alt="Top">
+            <h3>Top</h3>
+            <p>&#8377;30 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-top')">-</button>
+              <input type="number" id="qty-top" data-name="Top" data-price="30" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-top')">+</button>
+            </div>
+          </div>
+
+          <!-- 12. Blanket -->
+          <div class="box item">
+            <img src="Assets/blanket.png" alt="Blanket">
+            <h3>Blanket</h3>
+            <p>&#8377;120 / piece</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-blanket')">-</button>
+              <input type="number" id="qty-blanket" data-name="Blanket" data-price="120" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-blanket')">+</button>
+            </div>
+          </div>
+
+          <!-- 13. pyjama -->
+          <div class="box item">
+            <img src="Assets/clothes.png" alt="Pyjama">
+            <h3>Pyjama</h3>
+            <p>&#8377;150 / bag</p>
+            <div class="row qty-control">
+              <button type="button" class="btn" onclick="stepDown('qty-clothes')">-</button>
+              <input type="number" id="qty-clothes" data-name="Pyjama" data-price="150" value="0" min="0" oninput="calculateTotal()">
+              <button type="button" class="btn" onclick="stepUp('qty-clothes')">+</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Order Form & Summary Box -->
+        <section class="box order-form-box">
+          <h3>Customer Details &amp; Order Summary</h3>
+          <div class="row form-fields">
+            <label>
+              Customer Name:
+              <input type="text" id="custName" placeholder="Enter your full name" required>
+            </label>
+            <label>
+              Mobile Number:
+              <input type="tel" id="custPhone" placeholder="10-digit mobile number" maxlength="10" required>
+            </label>
+            <label>
+              Service Category:
+              <select id="serviceType" onchange="syncService('bottom')">
+                <option value="Wash &amp; Fold">Wash &amp; Fold</option>
+                <option value="Dry Clean">Dry Clean</option>
+                <option value="Steam Ironing">Steam Ironing</option>
+                <option value="Express Wash">Express Wash</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="row total-row">
+            <div>
+              <p>Total Items: <b id="displayTotalItems">0</b></p>
+              <p>Total Amount: <b id="displayTotalPrice">&#8377;0</b></p>
+            </div>
+            <button type="button" class="btn btn-order" onclick="placeOrder()">Place Order &amp; Get 5-Digit Code</button>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- SECTION 2: ACTIVE ORDERS -->
+      <section id="sectionActive" class="hidden">
+        <div class="row section-title-row">
+          <h2>Active Orders</h2>
+        </div>
+        <div id="activeOrdersList" class="orders-grid">
+          <!-- Active orders will be injected here -->
+        </div>
+      </section>
+
+      <!-- SECTION 3: COMPLETED ORDERS -->
+      <section id="sectionCompleted" class="hidden">
+        <div class="row section-title-row">
+          <h2>Completed Orders</h2>
+        </div>
+        <div id="completedOrdersList" class="orders-grid">
+          <!-- Completed orders will be injected here -->
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
