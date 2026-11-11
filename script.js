@@ -187,8 +187,12 @@ function generateOrderCode() {
 
   return uniqueCode;
 }
-const orderCode = generateOrderCode();
-document.getElementById("display").innerText = orderCode;
+
+var orderCode = generateOrderCode();
+const displayElement = document.getElementById("display");
+if (displayElement) {
+  displayElement.innerText = orderCode;
+}
 
 // Function to place a new order
 function placeOrder() {
@@ -212,7 +216,6 @@ function placeOrder() {
       totalPrice += qty * price;
     }
   });
-
   // Check if at least 1 item is chosen
   if (selectedItems.length === 0) {
     alert("Please select at least 1 cloth item to place your laundry order!");
@@ -267,6 +270,13 @@ function placeOrder() {
   if (custPhoneInput) custPhoneInput.value = "";
   calculateTotal();
 
+  // Refresh order code for new order creation and update display on home page
+  orderCode = generateOrderCode();
+  const display = document.getElementById("display");
+  if (display) {
+    display.innerText = orderCode;
+  }
+
   // Re-render orders and switch to Active Orders tab
   renderOrders();
   showTab("active");
@@ -305,11 +315,11 @@ function showTab(tabName) {
   const btnProducts = document.getElementById("btnProducts");
   const btnActive = document.getElementById("btnActive");
   const btnCompleted = document.getElementById("btnCompleted");
-
+  
   if (btnProducts) btnProducts.classList.remove("active");
   if (btnActive) btnActive.classList.remove("active");
   if (btnCompleted) btnCompleted.classList.remove("active");
-
+  
   if (secProducts) secProducts.classList.add("hidden");
   if (secActive) secActive.classList.add("hidden");
   if (secCompleted) secCompleted.classList.add("hidden");
@@ -396,16 +406,16 @@ function renderOrders() {
             <span class="row order-status">
               <img src="Assets/ready-stock.png" alt="Ready" class="mini-icon">
               Completed (${order.time})
-            </span>
-          </div>
-
-          <!-- Order details in 2-column grid view -->
+              </span>
+              </div>
+              
+              <!-- Order details in 2-column grid view -->
           <div class="order-details-grid">
             <div><b>Customer:</b> ${order.customer}</div>
             <div><b>Phone:</b> ${order.phone}</div>
             <div><b>Category:</b> ${order.service}</div>
             <div><b>Items:</b> ${order.totalItems}</div>
-          </div>
+            </div>
 
           <!-- Items list box -->
           <div class="order-items-box">
@@ -417,8 +427,8 @@ function renderOrders() {
           <div class="row order-total-row">
             <b>Bill Total:</b>
             <span class="badge" style="font-size: 14px;">₹${order.totalPrice}</span>
-          </div>
-
+            </div>
+            
           <div class="row">
             <button type="button" class="btn" onclick="deleteOrder(${order.code})">
               <img src="Assets/delete.png" alt="Delete" class="mini-icon"> Delete Record
@@ -433,14 +443,14 @@ function renderOrders() {
   if (activeCount === 0) {
     activeHTML = "<div class='box empty-msg' ><p>No active orders right now.</p></div>";
   }
-
+  
   if (completedCount === 0) {
     completedHTML = "<div class='box empty-msg'><p>No completed orders yet.</p></div>";
   }
-
+  
   activeContainer.innerHTML = activeHTML;
   completedContainer.innerHTML = completedHTML;
-
+  
   const activeCountBadge = document.getElementById("activeCount");
   if (activeCountBadge) {
     activeCountBadge.innerText = activeCount;
@@ -449,7 +459,9 @@ function renderOrders() {
   if (completedCountBadge) {
     completedCountBadge.innerText = completedCount;
   }
+
 }
+
 
 // Run on page load
 window.addEventListener("DOMContentLoaded", function() {
