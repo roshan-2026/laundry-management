@@ -30,7 +30,9 @@ const priceListByService = {
     "Tunic": 40,
     "Top": 15,
     "Blanket": 80,
-    "pyjama": 10
+    "pyjama": 10,
+    "Lab Coat": 60,
+    "Towel": 20
   },
   "Steam Ironing": {
     "Shirt": 15,
@@ -45,7 +47,9 @@ const priceListByService = {
     "Tunic": 25,
     "Top": 10,
     "Blanket": 40,
-    "pyjama": 15
+    "pyjama": 15,
+    "Lab Coat": 80,
+    "Towel": 30
   },
   "Dry Clean": {
     "Shirt": 30,
@@ -60,7 +64,9 @@ const priceListByService = {
     "Tunic": 70,
     "Top": 25,
     "Blanket": 120,
-    "pyjama": 30
+    "pyjama": 30,
+    "Lab Coat": 90,
+    "Towel": 40
   },
   "Express Wash": {
     "Shirt": 45,
@@ -75,7 +81,9 @@ const priceListByService = {
     "Tunic": 95,
     "Top": 35,
     "Blanket": 160,
-    "pyjama": 45
+    "pyjama": 45,
+    "Lab Coat": 120,
+    "Towel": 50
   }
 };
 
