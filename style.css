@@ -55,6 +55,12 @@ body {
   border-color: #ffffff;
 }
 
+.minus:hover {
+  background-color: rgb(248, 84, 84);
+}
+.plus:hover {
+  background-color: rgb(16, 210, 16);
+}
 /* 3. Row */
 .row {
   display: flex;
