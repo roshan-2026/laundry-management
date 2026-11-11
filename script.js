@@ -79,23 +79,14 @@ const priceListByService = {
   }
 };
 
-// Function to sync top and bottom wash type dropdowns and update prices
-function syncService(source) {
-  const topSelect = document.getElementById("serviceTypeTop");
-  const bottomSelect = document.getElementById("serviceType");
-
-  if (source === "top" && topSelect && bottomSelect) {
-    bottomSelect.value = topSelect.value;
-  } else if (source === "bottom" && topSelect && bottomSelect) {
-    topSelect.value = bottomSelect.value;
-  }
-
+// Function to sync and update prices
+function syncService() {
   updatePrices();
 }
 
 // Function to update prices on all cards according to selected wash type
 function updatePrices() {
-  const serviceSelect = document.getElementById("serviceType") || document.getElementById("serviceTypeTop");
+  const serviceSelect = document.getElementById("serviceType");
   if (!serviceSelect) return;
 
   const selectedService = serviceSelect.value;
@@ -109,8 +100,8 @@ function updatePrices() {
 
     if (input && priceText) {
       const itemName = input.getAttribute("data-name");
-      const unit = itemName === "pyjama" ? " / bag" : " / piece";
-      const newPrice = rates[itemName] !== undefined ? rates[itemName] : 20;
+      const unit = itemName === "" ?"": " / piece";
+      const newPrice = rates[itemName] !== undefined ? rates[itemName] : 30;
 
       // Update data-price attribute for bill calculation
       input.setAttribute("data-price", newPrice);
